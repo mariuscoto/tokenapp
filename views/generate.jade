@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title "Generate token"
+
+  body
+    #main
+      form(method='post', action='/ceva')
+        label Username
+        br
+        input.span5(name='user', type='text', required)
+        br
+        br
+        label PIN
+        br
+        input.span5(name='pin', type='text', required)
+        input.btn.btn-success(type='submit', value='Generate')

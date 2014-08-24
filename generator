@@ -1,0 +1,56 @@
+sha = require("sha1")
+b64 = require("base64-js")
+
+
+var express = require('express');
+var bodyParser = require('body-parser')
+var app = module.exports = express();
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(bodyParser.urlencoded({extended: true}));
+
+
+function getToken(username, password, expiration) {
+	
+	if (!expiration)
+  expiration = new Date().getTime() + (14 * 24 * 60 * 60 * 1000)
+
+  var msg = [username.toLowerCase(), expiration, password.toLowerCase()].join(":");
+ 
+  var digest = sha(msg)
+
+  var bin = "";
+  for (var i = 0; i < digest.length; i += 2) {
+  	bin += String.fromCharCode(parseInt(digest.substr(i, 2), 16));
+  }
+
+  console.log(sha(bin))
+  digest = b64.toByteArray(bin)
+  digest = String.fromCharCode.apply(null, digest)
+
+  var token = [username, expiration, digest].join(":");
+
+  return token;
+}
+
+
+app.get('/', function(req, res) {
+  res.render('index')
+})
+
+app.post('/ceva', function(req, res) {
+  tok = getToken(req.body.user, req.body.pin)
+
+  res.render('index', {
+    code: tok
+  })
+})
+
+app.get('/generate', function(req, res) {
+  res.render('generate')
+})
+
+// Launch server
+app.listen(process.env.PORT || 3000, function() {
+console.log('Server listening on port 3000.');
+});
