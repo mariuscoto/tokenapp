@@ -1,17 +1,16 @@
-doctype html
-html
-  head
-    title "Generate token"
+extends layout
 
-  body
-    #main
-      form(method='post', action='/ceva')
-        label Username
-        br
-        input.span5(name='user', type='text', required)
-        br
-        br
-        label PIN
-        br
-        input.span5(name='pin', type='text', required)
-        input.btn.btn-success(type='submit', value='Generate')
+block content
+  #main
+    - if (ref == 'wrong')
+      h1 Incorrect PIN.
+    - if (token)
+      h1= "Your token is: " + token
+
+    h3 Generate token:
+    form(method='post', action='/generate')
+      label PIN
+      br
+      input.span5(name='pin', type='text', required)
+      br
+      input.btn.btn-success(type='submit', value='Generate')

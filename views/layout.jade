@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title TokenApp
+
+  body
+    #nav
+      ul
+        li
+          a(href='/') Home
+        li
+          a(href='/public') Public
+        li
+          a(href='/private') Private
+        - if (session.admin)
+          li
+            a(href='/add') Add user
+        - if (session.loggedIn)
+          li
+            a(href='/generate') Generate
+        - if (session.loggedIn)
+          li
+            a(href='/logout') Logout
+        - else
+          li
+            a(href='/login') Login
+
+    block content

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  #main
+    h3 Add a new user.
+    - each u in users
+      ul
+        li= u.user_name + " " + u.token + " " + u.pin
+
+    h3 Add a new user:
+    form(method='post', action='/add')
+      label Username
+      br
+      input.span5(name='user', type='text', required)
+      br
+      label PIN
+      br
+      input.span5(name='pin', type='text', required)
+      br
+      input.btn.btn-success(type='submit', value='Add')

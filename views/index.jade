@@ -1,8 +1,7 @@
-doctype html
-html
-  head
-    title "Token app"
+extends layout
 
-  body
-    #main
-      p= code
+block content
+  #main
+    p Demo Tokenapp
+    - if(loggedIn)
+      p= "Hello " + user

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  #main
+    if (ref == 'private')
+      h2 You must login to view the private page.
+    if (ref == 'no_user')
+      h2 User not registered or wrong password.
+
+    form(method='post', action='/login')
+      label Username
+      br
+      input.span5(name='user', type='text', required)
+      br
+      br
+      label PIN
+      br
+      input.span5(name='pin', type='text', required)
+      input.btn.btn-success(type='submit', value='Login')

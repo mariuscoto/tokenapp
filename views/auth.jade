@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  #main
+
+    if (ref == 'expired')
+      h1 Token has expired or is wrong.
+
+    h3 Use a token to view page:
+    form(method='post', action='/auth')
+      label Token
+      br
+      input.span5(name='token', type='text', required)
+      input.span5(name='redirect', type='hidden', value='#{redirect}')
+      br
+      input.btn.btn-success(type='submit', value='Access')
