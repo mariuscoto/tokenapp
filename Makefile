@@ -10,6 +10,7 @@ setup: package.json
 	mongo localhost/tokenapp --eval "db.users.insert({'user_name': 'admin', 'pin': 'admin'})"
 
 run:
+	mongo localhost/tokenapp --eval "db.users.insert({'user_name': 'admin', 'pin': 'admin'})"
 	@mongod &
 	@echo "Server running at localhost:3000"
 	@nodejs generator.js

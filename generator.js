@@ -25,7 +25,7 @@ app.use(function(req,res,next){
 var Users = mongoose.model('Users');
 
 var ADMIN_USER = 'admin'
-var TIMEOUT = 20 * 1000 //ms
+var TIMEOUT = 10 * 1000 //ms
 
 
 
@@ -192,6 +192,7 @@ app.post('/login', function(req, res) {
 })
 app.get('/logout', function(req, res) {
   // Reset all session variables
+  req.session.token = null
   req.session.admin = false
   req.session.loggedIn = false
   req.session.auth = {}
