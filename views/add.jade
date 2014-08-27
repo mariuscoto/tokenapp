@@ -2,7 +2,7 @@ extends layout
 
 block content
   #main
-    h3 Add a new user.
+    h3 Created users:
     - each u in users
       ul
         li= u.user_name + " " + u.token + " " + u.pin
