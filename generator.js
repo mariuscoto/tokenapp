@@ -1,5 +1,4 @@
 sha = require("sha1")
-b64 = require("base64-js")
 
 var db = require('./model/db')
 var cookieParser = require('cookie-parser')
@@ -52,14 +51,6 @@ app.get('/', function(req, res) {
 
   res.render('index', {
     'user': user
-  })
-})
-
-app.post('/ceva', function(req, res) {
-  tok = getToken(req.body.user, req.body.pin)
-
-  res.render('index', {
-    code: tok
   })
 })
 
